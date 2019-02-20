@@ -6,8 +6,9 @@ const api=require('./server/routes/api')
 const mongoose=require('mongoose')
 mongoose.connect('mongodb://localhost/Wheather-last',{useNewUrlParser: true})
 
-app.use(express.static(path.join(__dirname,'node_modules')))
-app.use(express.static(path.join(__dirname,'dist')))
+app.use(express.static(path.join(__dirname, 'node_modules')))
+app.use(express.static(path.join(__dirname, 'dist')))
+
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))

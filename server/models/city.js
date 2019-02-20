@@ -5,7 +5,7 @@ const citySchema=new Schema({
     name : String,
     updatedAt : String,
     temperature : Number,
-    condition : String,
+    conditions : String,
     conditionPic : String,
     displaySave : String,
     displayDelete : String

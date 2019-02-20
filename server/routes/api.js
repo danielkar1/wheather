@@ -7,7 +7,6 @@ const router=express.Router()
 
 router.get('/city/:cityName', function(req,res){ //gets city from api
     let cityName=req.params.cityName
-    console.log(cityName)
     request(`http://api.apixu.com/v1/current.json?key=6b40491a7cfa4d9daf7122510181912&q=${cityName}`,function(err,reso,body){
         let data=JSON.parse(body)
         res.send(data)
@@ -21,24 +20,25 @@ router.get('/cities',function(req,res){ //gets cities from my DB
   })
 })
 
-router.post('/cities', function(req,res){ //saves new cities to db
+router.post('/city', function(req,res){ //saves new cities to db
         let data=req.body
+        console.log(data)
             let newCity= new City({
-                name: data.location.name,
-                updatedAt: data.current.last_updated,
-                temperature: data.current.temp_c,
-                condition: data.current.condition.text,
-                conditionPic:data.current.condition.icon
+                name: data.name,
+                updatedAt: data.updatedAt,
+                temperature: data.temperature,
+                conditions: data.conditions,
+                conditionPic:data.conditionPic
             })
             newCity.save()
             res.end()
 })
 router.delete('/city/:cityName',function(res,req){
-    console.log(res.params.cityName)
+    console.log(res.params)
     let cityName=res.params.cityName
     City.deleteOne({name:cityName}).exec(function(err,city){
       console.log(`${cityName} is deleted from db`)
-       res.end()
+      req.end()
     })
 
 })

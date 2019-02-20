@@ -1,39 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Wheather App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="./jquery/dist/jquery.js"></script>
 
-    
 </head>
+
 <body>
     <input id="city-input">
     <button onclick="go()">find city</button>
-   <div id="city-container"></div>
+    <div id="city-container"></div>
 
-     <script id="city-template" type="text/x-handlebars-template">
+    <script id="city-template" type="text/x-handlebars-template">
         {{#each CitiesData}}
-        <div class="city-box">
-        <div class="temp">{{temperature}}<div>
-        <div>{{name}}</div>
-        </div> <img class="picture" src="{{conditionPic}}">
-        <span>{{condition}}</span>
-        <div class="save" >Save</div>
-<!-- <button class="remove" onclick="remove">Remove</button> -->
-</div> 
+        <div class="city">
+            <div class="cityBox">
+                <span class="temperature">{{temperature}} &#8451</span>
+                <span class="name">{{name}}</span>
+            </div>
+            <div class="img">
+                <img class="conditionPic" src="{{conditionPic}}"/>
+                <span class="condition">{{conditions}}</span>
+             </div>
+             <i class= "save">save</i>
+             <i class= "delete">delete</i>
+             <!-- <i style="display:{{displayDelete}}"  class="fas fa-trash-alt button delete"></i>
+            <i style="display: {{displaySave}}"  class="far fa-save button save"></i>
+            <span class="update">Last update: {{updatedAt}}</span>
+            <i style="display:{{displayDelete}}"  class="fas fa-sync-alt"></i> -->
+        </div>
+    </div>
+        {{/each}}
 
-</div>
-    {{/each}} 
-
-    <script src="./handlebars/dist/handlebars.js"></script>
+    
+<!-- <script src="./handlebars/dist/handlebars.js"></script> -->
     <script src="./jquery/dist/jquery.js"></script>
     <script src="TempManager.js"></script>
     <script src="Renderer.js"></script>
     <script src="main.js"></script>
-   
+
 
 </body>
+
 </html>
