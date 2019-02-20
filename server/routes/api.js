@@ -34,9 +34,11 @@ router.post('/cities', function(req,res){ //saves new cities to db
             res.end()
 })
 router.delete('/city/:cityName',function(res,req){
-    let cityName=req.params.cityName
+    console.log(res.params.cityName)
+    let cityName=res.params.cityName
     City.deleteOne({name:cityName}).exec(function(err,city){
-        res.send(`${city} was deleted from DB`)
+      console.log(`${cityName} is deleted from db`)
+       res.end()
     })
 
 })
