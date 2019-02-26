@@ -5,6 +5,12 @@ class TempManager{
         this.renderer=renderer
         this.cityData=[]
     }
+
+    // automaticUpdate(){
+    //     let currentTime= new Date()
+    //     this.cityData.map(city=> city.updatedAt-)
+
+    // }
     
     getDataFromDB(){ //populate state array with cities from db
         $.get('cities', (citiesData)=>{
@@ -51,8 +57,18 @@ class TempManager{
                 console.log(`${cityName} sent for deletion`)
                 this.getDataFromDB()
             }
-       
+   
     })
+    }
+
+    updateCity(cityName) {
+        $.ajax({
+            url: `city/${cityName}`,
+            method: "PUT",
+            success: response => {
+                this.getDataFromDB()
+            }
+        })
     }
 
 }

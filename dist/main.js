@@ -18,14 +18,22 @@ const go=()=>{
 
 }
 
-$("body").on("click",".save",function(){
+
+$("body").on("click",".save",function(){//save city
     let name =  $(this).siblings(".cityBox").find(".name").text()
     tMr.saveCity(name)
 })
 
-$("body").on("click",".delete",function(){
+$("body").on("click",".delete",function(){//delete city
     let name=$(this).siblings(".cityBox").find(".name").text()
     tMr.deleteCity(name)
 })
+
+$("body").on("click",".update",function(){//delete city
+    let name=$(this).siblings(".cityBox").find(".name").text()
+    tMr.updateCity(name)
+})
+
+
 
 loadPage()

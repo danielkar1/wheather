@@ -3,6 +3,7 @@ const City = require('../models/City') //mongod scheme
 const express=require('express')
 const request = require('request')
 const router=express.Router()
+const moment=require('moment')
 
 
 router.get('/city/:cityName', function(req,res){ //gets city from api
@@ -42,4 +43,19 @@ router.delete('/city/:cityName',function(res,req){
     })
 
 })
+
+router.put('/city/:cityName',function(res,req){
+    console.log(res.params)
+    let cityName=res.params.cityName
+    request(`http://api.apixu.com/v1/current.json?key=6b40491a7cfa4d9daf7122510181912&q=${cityName}`,function(err,reso,body){
+        let data=JSON.parse(body)
+        
+    City.findOneAndUpdate({name:cityName},{'updatedAt':data.current.last_updated,'temperature':data.current.temp_c,
+   'conditions':data.current.condition.text,'conditionPic':data.current.condition.icon  }).exec(function(err,oldCity){
+      console.log(`${cityName} is updated`)
+      req.end()
+    })
+    })
+})
+
 module.exports=router

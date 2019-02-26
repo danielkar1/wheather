@@ -9,27 +9,38 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<style>
+body {
+  font-family: 'montserrat', serif;
+  font-size: 14px;
+}
+</style>
 
 </head>
 
 <body>
     <input id="city-input">
-    <button onclick="go()">find city</button>
+    
+    <button  id="button" onclick="go()">search</button>
     <div id="city-container"></div>
 
     <script id="city-template" type="text/x-handlebars-template">
         {{#each CitiesData}}
         <div class="city">
             <div class="cityBox">
-                <span class="temperature">{{temperature}} &#8451</span>
-                <span class="name">{{name}}</span>
+                <div class="temperature">{{temperature}} &#8451</div>
+                <div class="name">{{name}}</div>
             </div>
             <div class="img">
                 <img class="conditionPic" src="{{conditionPic}}"/>
-                <span class="condition">{{conditions}}</span>
+                <div class="condition">{{conditions}}</div>
              </div>
-             <i class= "save">save</i>
-             <i class= "delete">delete</i>
+             
+             <i class="fas fa-plus-circle save"></i>
+             <i class="fas fa-window-close delete" ></i>
+             <i class="fas fa-sync-alt update"></i>
              <!-- <i style="display:{{displayDelete}}"  class="fas fa-trash-alt button delete"></i>
             <i style="display: {{displaySave}}"  class="far fa-save button save"></i>
             <span class="update">Last update: {{updatedAt}}</span>
